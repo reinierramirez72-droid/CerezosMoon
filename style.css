@@ -1,50 +1,43 @@
-/* Configuración básica para el fondo del Xat Space */
-body {
+/* Limpieza de márgenes del navegador para evitar bordes oscuros */
+html, body {
     margin: 0;
     padding: 0;
-    background-color: #121214; /* Un fondo oscuro de cortesía */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-/* Caja contenedora con la proporción de la imagen original */
-.space-contenedor {
-    position: relative;
     width: 100%;
-    max-width: 900px;  /* Puedes achicar o agrandar este valor según tu espacio */
-    aspect-ratio: 16 / 10;
+    height: 100%;
     overflow: hidden;
-    border-radius: 12px; /* Bordes suaves estéticos */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background-color: #000000;
 }
 
-/* Regla general para congelar las 3 capas exactamente en el mismo sitio */
-.capa {
+/* El contenedor principal ocupa obligatoriamente todo el xat space */
+.xat-space-pantalla-completa {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Regla para que las 3 imágenes se claven una encima de otra perfectamente */
+.capa-visual {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    pointer-events: none; /* Evita que el usuario arrastre las capas por error */
+    object-fit: cover; /* Hace que la imagen llene el espacio sin deformarse */
+    pointer-events: none;
 }
 
-/* Capa base de fondo */
+/* Orden de profundidad */
 .capa-fondo {
     z-index: 1;
 }
 
-/* Capa del nombre: Elimina el fondo negro sólido del JPG */
 .capa-texto {
     z-index: 2;
-    mix-blend-mode: screen; 
-    opacity: 0.95; /* Controla la intensidad del brillo si es necesario */
+    mix-blend-mode: screen; /* Vuelve invisible el fondo negro del JPG */
 }
 
-/* Capa de las ramas del frente: Elimina el fondo negro del JFIF */
 .capa-ramas {
     z-index: 3;
-    mix-blend-mode: screen;
+    mix-blend-mode: screen; /* Vuelve invisible el fondo negro del JFIF */
 }
