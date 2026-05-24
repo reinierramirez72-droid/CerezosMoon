@@ -27,13 +27,11 @@ html, body {
     position: absolute;
     width: 260px;
     height: 260px;
-    /* Ubicación exacta arriba a la derecha con márgenes de respeto */
     top: 40px;
     right: 60px;
     background: radial-gradient(circle at 30% 30%, #fffbf2 0%, #f9e2cc 50%, #dfbda6 100%);
     border-radius: 50%;
     z-index: 1;
-    /* Resplandor místico expandido */
     box-shadow: 0 0 50px rgba(249, 226, 204, 0.4),
                 0 0 100px rgba(223, 189, 166, 0.2),
                 inset -15px -15px 35px rgba(0, 0, 0, 0.1);
@@ -80,44 +78,52 @@ html, body {
 }
 
 /* ==========================================
-   NUEVA TIPOGRAFÍA CURSIVA EN CSS
+   RECREACIÓN DE LA TIPOGRAFÍA EN CSS
    ========================================== */
 .contenedor-nombre {
     position: relative;
     z-index: 3;
     text-align: center;
     width: 100%;
-    max-width: 800px;
+    max-width: 850px;
     padding: 20px;
 }
 
-.texto-cursivo {
-    font-family: 'Great Vibes', cursive;
-    font-size: 8rem; /* Tamaño grande e impactante para el centro */
+.texto-caligrafico {
+    /* Usamos 'Great Vibes' para un trazo fluido y elegante, similar a la referencia */
+    font-family: 'Great Vibes', 'Monsieur La Doulaise', cursive;
+    font-size: 9.5rem; 
     margin: 0;
     font-weight: 400;
+    display: inline-block;
     
-    /* Efecto metalizado oro rosa brillante mediante gradiente de texto */
-    background: linear-gradient(to bottom, #fce1e4 0%, #e8a7b6 40%, #c57b8e 70%, #9c5064 100%);
+    /* Efecto Oro Rosa Metálico: Degradado lineal vertical */
+    background: linear-gradient(to bottom, 
+        #ffffff 0%, 
+        #fce1e4 20%, 
+        #e8a7b6 45%, 
+        #c57b8e 75%, 
+        #8b4154 100%
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     
-    /* Sombra paralela suave y resplandor para separarlo con elegancia del fondo */
-    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.4),
-                 0 0 20px rgba(232, 167, 182, 0.2);
-    
-    letter-spacing: 2px;
+    /* Sombra de relieve e iluminación trasera para imitar el brillo de la imagen */
+    filter: drop-shadow(3px 5px 8px rgba(0, 0, 0, 0.5)) 
+            drop-shadow(0px 0px 15px rgba(232, 167, 182, 0.35));
+            
+    letter-spacing: 1px;
 }
 
-/* Ajuste responsivo por si entran desde celulares */
-@media (max-width: 600px) {
-    .texto-cursivo {
-        font-size: 5rem;
+/* Ajustes dinámicos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .texto-caligrafico {
+        font-size: 6rem;
     }
     .luna-derecha {
         width: 160px;
         height: 160px;
-        right: 20px;
-        top: 20px;
+        right: 30px;
+        top: 30px;
     }
 }
