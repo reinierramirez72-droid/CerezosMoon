@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xat Space - Gaby</title>
+    <title>Espacio de Gaby</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,51 +15,102 @@
     <div class="xat-space-escenario">
         
         <div class="luna-derecha"></div>
-        
+
         <div class="lluvia-petalos">
-            <span class="petalo p1"></span>
-            <span class="petalo p2"></span>
-            <span class="petalo p3"></span>
-            <span class="petalo p4"></span>
-            <span class="petalo p5"></span>
-            <span class="petalo p6"></span>
-            <span class="petalo p7"></span>
-            <span class="petalo p8"></span>
-            <span class="petalo p9"></span>
-            <span class="petalo p10"></span>
-            <span class="petalo p11"></span>
-            <span class="petalo p12"></span>
+            <div class="petalo p1"></div>
+            <div class="petalo p2"></div>
+            <div class="petalo p3"></div>
+            <div class="petalo p4"></div>
+            <div class="petalo p5"></div>
+            <div class="petalo p6"></div>
+            <div class="petalo p7"></div>
+            <div class="petalo p8"></div>
+            <div class="petalo p9"></div>
+            <div class="petalo p10"></div>
+            <div class="petalo p11"></div>
+            <div class="petalo p12"></div>
         </div>
 
         <div class="mariposa-contenedor m1">
             <div class="mariposa">
-                <div class="ala ala-izquierda"></div>
                 <div class="cuerpo"></div>
+                <div class="ala ala-izquierda"></div>
                 <div class="ala ala-derecha"></div>
             </div>
         </div>
-
         <div class="mariposa-contenedor m2">
             <div class="mariposa">
-                <div class="ala ala-izquierda"></div>
                 <div class="cuerpo"></div>
+                <div class="ala ala-izquierda"></div>
                 <div class="ala ala-derecha"></div>
             </div>
         </div>
-
         <div class="mariposa-contenedor m3">
             <div class="mariposa">
-                <div class="ala ala-izquierda"></div>
                 <div class="cuerpo"></div>
+                <div class="ala ala-izquierda"></div>
                 <div class="ala ala-derecha"></div>
             </div>
         </div>
-        
+
         <div class="contenedor-nombre">
-            <h1 class="texto-caligrafico">Gabriela</h1>
+            <h1 class="texto-caligrafico">Gaby</h1>
         </div>
-        
+
+        <audio id="musica-fondo" src="cancion.mp3" loop></audio>
+
+        <div class="reproductor-contenedor">
+            <button id="btn-reproductor" class="btn-musica">
+                <i id="icono-reproductor" class="fas fa-play"></i>
+            </button>
+        </div>
+
     </div>
 
+    <script>
+        const musica = document.getElementById('musica-fondo');
+        const boton = document.getElementById('btn-reproductor');
+        const icono = document.getElementById('icono-reproductor');
+
+        // Función unificada para alternar Play/Pause y cambiar iconos visuales
+        function alternarMusica() {
+            if (musica.paused) {
+                musica.play().then(() => {
+                    icono.className = 'fas fa-pause';
+                }).catch(error => console.log("La reproducción automática requiere interacción previa"));
+            } else {
+                musica.pause();
+                icono.className = 'fas fa-play';
+            }
+        }
+
+        // 1. Escuchar el clic manual en el botón inferior
+        boton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evita conflictos con el escuchador general de la pantalla
+            alternarMusica();
+        });
+
+        // 2. REPRODUCCIÓN AUTOMÁTICA CON CUALQUIER INTERACCIÓN
+        // Intenta arrancar de inmediato al cargar (funciona si ya hubo clics previos en el navegador)
+        window.addEventListener('DOMContentLoaded', () => {
+            musica.play().then(() => {
+                icono.className = 'fas fa-pause';
+            }).catch(() => {
+                // Si el navegador lo bloquea, escucha cualquier interacción en la pantalla para activarlo
+                const activarConInteraccion = () => {
+                    musica.play().then(() => {
+                        icono.className = 'fas fa-pause';
+                        // Remueve los eventos una vez que la música ha comenzado con éxito
+                        document.removeEventListener('click', activarConInteraccion);
+                        document.removeEventListener('touchstart', activarConInteraccion);
+                        document.removeEventListener('keydown', activarConInteraccion);
+                    });
+                };
+                document.addEventListener('click', activarConInteraccion);
+                document.addEventListener('touchstart', activarConInteraccion);
+                document.addEventListener('keydown', activarConInteraccion);
+            });
+        });
+    </script>
 </body>
 </html>
