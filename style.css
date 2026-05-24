@@ -1,43 +1,59 @@
-/* Limpieza de márgenes del navegador para evitar bordes oscuros */
+/* Redimensionamiento y limpieza total de la pantalla del Xat */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: #000000;
+    /* Degradado de fondo que simula un cielo nocturno en tonos violeta oscuro y gris azulado */
+    background: linear-gradient(135deg, #16121e 0%, #2a2235 50%, #1a1721 100%);
+    font-family: sans-serif;
 }
 
-/* El contenedor principal ocupa obligatoriamente todo el xat space */
-.xat-space-pantalla-completa {
+/* Contenedor del espacio que bloquea todo a pantalla completa */
+.xat-space-ambiente {
     position: relative;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Regla para que las 3 imágenes se claven una encima de otra perfectamente */
-.capa-visual {
+/* LUNA CSS: Círculo perfecto con brillos difuminados simulando resplandor lunar */
+.luna-css {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Hace que la imagen llene el espacio sin deformarse */
-    pointer-events: none;
-}
-
-/* Orden de profundidad */
-.capa-fondo {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, #fffdf0 0%, #fffae0 40%, #ffebd0 80%);
+    border-radius: 50%;
+    /* Efecto de resplandor suave alrededor de la luna */
+    box-shadow: 0 0 60px rgba(255, 235, 200, 0.4), 
+                0 0 120px rgba(234, 180, 210, 0.2);
     z-index: 1;
+    /* Desplazamiento sutil hacia el centro-fondo */
+    transform: translateY(-20px);
 }
 
-.capa-texto {
+/* Contenedor para el nombre que se posiciona justo encima de la luna */
+.contenedor-nombre {
+    position: relative;
     z-index: 2;
-    mix-blend-mode: screen; /* Vuelve invisible el fondo negro del JPG */
+    width: 100%;
+    max-width: 750px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.capa-ramas {
-    z-index: 3;
-    mix-blend-mode: screen; /* Vuelve invisible el fondo negro del JFIF */
+/* Tu imagen de letras: se adaptará dinámicamente y se integrará al entorno */
+.letra-repositorio {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    /* Elimina mágicamente el fondo negro de tu JPG, dejando ver el resplandor de la luna detrás */
+    mix-blend-mode: screen;
+    /* Un toque extra de contraste para resaltar el metalizado oro rosa */
+    filter: contrast(1.1) brightness(1.05);
 }
