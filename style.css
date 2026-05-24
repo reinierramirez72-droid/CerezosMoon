@@ -1,64 +1,50 @@
-/* Reset básico */
-* {
+/* Configuración básica para el fondo del Xat Space */
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+    background-color: #121214; /* Un fondo oscuro de cortesía */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #1a151d; /* Fondo oscuro por si no carga la imagen */
 }
 
-.card-container {
+/* Caja contenedora con la proporción de la imagen original */
+.space-contenedor {
     position: relative;
     width: 100%;
-    max-width: 800px;
-    height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px;
+    max-width: 900px;  /* Puedes achicar o agrandar este valor según tu espacio */
+    aspect-ratio: 16 / 10;
     overflow: hidden;
-    
-    /* Instrucción para el fondo: 
-       Coloca tu imagen de los cerezos y la luna en tu carpeta de proyecto.
-       Si la nombras 'fondo.jpg', el código de abajo la cargará perfectamente.
-    */
-    background: url('fondo.jpg') center/cover no-repeat;
+    border-radius: 12px; /* Bordes suaves estéticos */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.name-title {
-    /* Combinación de fuentes elegantes estilo script */
-    font-family: 'Monsieur La Doulaise', 'Great Vibes', cursive;
-    font-size: 9rem; /* Tamaño grande para destacar */
-    color: #e5b3a3; /* Tono oro rosa de base */
-    
-    /* Gradiente lineal para simular el brillo metálico del texto */
-    background: linear-gradient(135deg, #f3d1c4 0%, #d49a85 50%, #aa6c56 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    
-    /* Efecto de relieve y sombra para despegarlo del fondo (efecto 3D) */
-    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7)) 
-            drop-shadow(-1px -1px 1px rgba(255, 255, 255, 0.3));
-    
-    user-select: none;
-    z-index: 2;
-    letter-spacing: -2px;
+/* Regla general para congelar las 3 capas exactamente en el mismo sitio */
+.capa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; /* Evita que el usuario arrastre las capas por error */
 }
 
-/* Ajuste para pantallas más pequeñas (Móviles) */
-@media (max-width: 600px) {
-    .card-container {
-        height: 350px;
-        margin: 15px;
-    }
-    .name-title {
-        font-size: 5.5rem;
-    }
+/* Capa base de fondo */
+.capa-fondo {
+    z-index: 1;
+}
+
+/* Capa del nombre: Elimina el fondo negro sólido del JPG */
+.capa-texto {
+    z-index: 2;
+    mix-blend-mode: screen; 
+    opacity: 0.95; /* Controla la intensidad del brillo si es necesario */
+}
+
+/* Capa de las ramas del frente: Elimina el fondo negro del JFIF */
+.capa-ramas {
+    z-index: 3;
+    mix-blend-mode: screen;
 }
