@@ -176,12 +176,17 @@ html, body {
     width: 100%;
     max-width: 850px;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .texto-caligrafico {
     font-family: 'Great Vibes', 'Monsieur La Doulaise', cursive;
     font-size: 11rem; 
     margin: 0;
+    line-height: 1; /* Ajusta el espacio para que el botón suba más */
     font-weight: 400;
     display: inline-block;
     color: #ffffff;
@@ -197,49 +202,42 @@ html, body {
 }
 
 /* ==========================================
-   6. BOTÓN REPRODUCTOR MULTIMEDIA FLOTANTE
+   6. NUEVO BOTÓN NEÓN INTEGRADO BAJO EL NOMBRE
    ========================================== */
-.reproductor-contenedor {
-    position: absolute;
-    bottom: 50px;
-    text-align: center;
-    width: 100%;
-    z-index: 5;
+.reproductor-bajo-nombre {
+    margin-top: 15px; /* Separación perfecta y delicada del nombre */
+    display: inline-block;
 }
 
-.btn-musica {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    background: rgba(219, 178, 191, 0.35); /* Base sutil rosa translúcido */
-    backdrop-filter: blur(8px);            /* Filtro de desenfoque moderno */
-    -webkit-backdrop-filter: blur(8px);
+.btn-neon-musica {
+    background: none;
+    border: none;
     color: #ffffff;
-    font-size: 1.5rem;
+    font-size: 2.2rem; /* Tamaño estilizado para que combine */
     cursor: pointer;
     outline: none;
+    padding: 10px 20px;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 
-                inset 0 0 10px rgba(255, 255, 255, 0.2);
+    
+    /* Mismo efecto Neón Glow del nombre de Gaby */
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.9),  
+        0 0 20px rgba(255, 255, 255, 0.6),  
+        0 0 40px rgba(234, 172, 193, 0.5),  
+        2px 4px 10px rgba(40, 20, 30, 0.2);
 }
 
-/* Efectos visuales Hover y Active */
-.btn-musica:hover {
-    transform: scale(1.1);
-    background: rgba(255, 255, 255, 0.25);
-    border-color: #ffffff;
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.6),
-                0 0 10px rgba(234, 172, 193, 0.4);
+/* Efectos visuales de interacción delicada */
+.btn-neon-musica:hover {
+    transform: scale(1.15);
+    text-shadow: 
+        0 0 15px rgba(255, 255, 255, 1),  
+        0 0 30px rgba(255, 255, 255, 0.8),  
+        0 0 50px rgba(234, 172, 193, 0.8);
 }
 
-.btn-musica:active {
+.btn-neon-musica:active {
     transform: scale(0.95);
-}
-
-/* Ajuste específico para centrar el ícono de play de FontAwesome */
-.btn-musica .fa-play {
-    margin-left: 4px;
 }
 
 /* ==========================================
@@ -248,6 +246,6 @@ html, body {
 @media (max-width: 768px) {
     .texto-caligrafico { font-size: 7rem; }
     .luna-derecha { width: 160px; height: 160px; right: 30px; top: 30px; }
-    .btn-musica { width: 55px; height: 55px; font-size: 1.25rem; }
-    .reproductor-contenedor { bottom: 35px; }
+    .btn-neon-musica { font-size: 1.8rem; }
+    .reproductor-bajo-nombre { margin-top: 5px; }
 }
