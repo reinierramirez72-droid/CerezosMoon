@@ -1,42 +1,93 @@
-/* Limpieza radical de márgenes en el Xat Space */
+/* Reset total para fijar el diseño a pantalla completa */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: #0b090f; /* Color de respaldo ultra oscuro */
+    background-color: #0d0a12;
 }
 
-/* El fondo del espacio: Genera un degradado profundo en tonos violeta y cerezo oscuro */
-.xat-space-background {
+/* El contenedor del ambiente: Recrea el cielo crepuscular/nocturno de la referencia */
+.escenario-cerezo {
+    position: relative;
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Un degradado radial que simula un resplandor suave detrás del nombre */
-    background: radial-gradient(circle at center, #23192b 0%, #110c16 70%, #08050a 100%);
+    /* Degradado sutil violeta-grisáceo que imita la atmósfera de la imagen original */
+    background: linear-gradient(180deg, #42354c 0%, #2b2235 40%, #17131c 100%);
 }
 
-/* Contenedor de la tipografía para centrarla perfectamente */
-.wrapper-tipografia {
+/* LUNA LLENA: Círculo perfecto con resplandores internos y externos */
+.luna-llena {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    /* Mezcla de tonos crema, amarillos y rosados pálidos como tu referencia */
+    background: radial-gradient(circle at 30% 30%, #fffae8 0%, #f7e3ca 50%, #e0beab 100%);
+    border-radius: 50%;
+    z-index: 1;
+    /* Efecto de súper resplandor (Glow) en la noche */
+    box-shadow: 0 0 40px rgba(247, 227, 202, 0.6),
+                0 0 90px rgba(224, 190, 171, 0.3),
+                inset -20px -20px 50px rgba(0, 0, 0, 0.15);
+    /* Desplazamiento estratégico hacia el centro superior */
+    transform: translateY(-40px);
+}
+
+/* RAMAS DE CEREZO CSS: Recreamos marcos florales en los laterales usando gradientes y sombras */
+.rama {
+    position: absolute;
+    background: linear-gradient(to bottom, rgba(58,40,54,0.9), rgba(28,20,26,0.95));
+    border-radius: 40% 60% 50% 50%;
+    filter: blur(1px);
+    z-index: 2;
+}
+
+/* Simulación de la estructura izquierda */
+.rama-izquierda {
+    width: 120px;
+    height: 450px;
+    left: -20px;
+    bottom: -50px;
+    transform: rotate(25deg);
+    /* Sombras suaves e iluminación rosa simulando hojas y flores de cerezo */
+    box-shadow: 40px -30px 0 #b38295, 70px -10px 0 rgba(179,130,149,0.7), 20px -60px 0 #805467;
+}
+
+/* Simulación de la estructura derecha */
+.rama-derecha {
+    width: 160px;
+    height: 500px;
+    right: -40px;
+    top: -50px;
+    transform: rotate(-15deg);
+    /* Efecto floral denso cayendo desde la parte superior derecha */
+    box-shadow: -40px 50px 0 #b38295, -80px 20px 0 rgba(179,130,149,0.6), -20px 90px 0 #613e4e;
+}
+
+/* CONTEINER CENTRAL: Eleva la tipografía por encima de todo el escenario */
+.contenedor-principal {
+    position: relative;
+    z-index: 3;
     width: 100%;
-    max-width: 800px; /* Controla el tamaño horizontal del nombre en pantalla */
+    max-width: 800px;
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* Tratamiento de tu archivo de imagen del repositorio */
-.letra-centro {
+/* TIPOGRAFÍA: Adaptación e integración nativa del archivo del repositorio */
+.tipografia-gaby {
     width: 100%;
     height: auto;
     display: block;
     object-fit: contain;
     
-    /* El truco clave: vuelve 100% invisible el fondo negro de tu JPG */
+    /* El truco indispensable: el fondo negro desaparece y el texto adopta los tonos de la luna */
     mix-blend-mode: screen;
     
-    /* Le da un sutil extra de fuerza al brillo metálico rosa */
-    filter: brightness(1.1) contrast(1.05);
+    /* Potencia el metalizado oro rosa contra el nuevo fondo */
+    filter: brightness(1.15) contrast(1.1);
 }
