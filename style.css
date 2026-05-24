@@ -1,93 +1,104 @@
-/* Reset total para fijar el diseño a pantalla completa */
+/* ==========================================
+   CONFIGURACIÓN BASE DE PANTALLA
+   ========================================== */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: #0d0a12;
+    background-color: #1a1423;
 }
 
-/* El contenedor del ambiente: Recrea el cielo crepuscular/nocturno de la referencia */
-.escenario-cerezo {
+/* El cielo crepuscular violeta de la referencia original */
+.xat-space-escenario {
     position: relative;
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Degradado sutil violeta-grisáceo que imita la atmósfera de la imagen original */
-    background: linear-gradient(180deg, #42354c 0%, #2b2235 40%, #17131c 100%);
+    background: linear-gradient(180deg, #44374e 0%, #2c2136 50%, #150f1c 100%);
 }
 
-/* LUNA LLENA: Círculo perfecto con resplandores internos y externos */
-.luna-llena {
+/* ==========================================
+   LA LUNA LLENA (CSS PURO)
+   ========================================== */
+.luna-llena-css {
     position: absolute;
-    width: 320px;
-    height: 320px;
-    /* Mezcla de tonos crema, amarillos y rosados pálidos como tu referencia */
-    background: radial-gradient(circle at 30% 30%, #fffae8 0%, #f7e3ca 50%, #e0beab 100%);
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle at 30% 30%, #fffbf2 0%, #f9e2cc 50%, #dfbda6 100%);
     border-radius: 50%;
     z-index: 1;
-    /* Efecto de súper resplandor (Glow) en la noche */
-    box-shadow: 0 0 40px rgba(247, 227, 202, 0.6),
-                0 0 90px rgba(224, 190, 171, 0.3),
-                inset -20px -20px 50px rgba(0, 0, 0, 0.15);
-    /* Desplazamiento estratégico hacia el centro superior */
-    transform: translateY(-40px);
+    /* Resplandor místico expandido */
+    box-shadow: 0 0 50px rgba(249, 226, 204, 0.5),
+                0 0 110px rgba(223, 189, 166, 0.25),
+                inset -20px -20px 40px rgba(0, 0, 0, 0.1);
+    transform: translateY(-20px);
 }
 
-/* RAMAS DE CEREZO CSS: Recreamos marcos florales en los laterales usando gradientes y sombras */
-.rama {
+赛==========================================
+   LLUVIA DE PÉTALOS ANIMADOS
+   ========================================== */
+.lluvia-petalos {
     position: absolute;
-    background: linear-gradient(to bottom, rgba(58,40,54,0.9), rgba(28,20,26,0.95));
-    border-radius: 40% 60% 50% 50%;
-    filter: blur(1px);
+    width: 100%;
+    height: 100%;
     z-index: 2;
+    pointer-events: none;
 }
 
-/* Simulación de la estructura izquierda */
-.rama-izquierda {
-    width: 120px;
-    height: 450px;
-    left: -20px;
-    bottom: -50px;
-    transform: rotate(25deg);
-    /* Sombras suaves e iluminación rosa simulando hojas y flores de cerezo */
-    box-shadow: 40px -30px 0 #b38295, 70px -10px 0 rgba(179,130,149,0.7), 20px -60px 0 #805467;
+/* Base de un pétalo flotante */
+.petalo {
+    position: absolute;
+    background: linear-gradient(135deg, #f3b0c3 0%, #db879f 100%);
+    border-radius: 70% 10% 70% 40%;
+    opacity: 0.7;
+    animation: caer 8s linear infinite;
 }
 
-/* Simulación de la estructura derecha */
-.rama-derecha {
-    width: 160px;
-    height: 500px;
-    right: -40px;
-    top: -50px;
-    transform: rotate(-15deg);
-    /* Efecto floral denso cayendo desde la parte superior derecha */
-    box-shadow: -40px 50px 0 #b38295, -80px 20px 0 rgba(179,130,149,0.6), -20px 90px 0 #613e4e;
+/* Tamaños y posiciones aleatorias para simular naturaleza */
+.p1 { width: 12px; height: 18px; left: 20%; animation-delay: 0s; animation-duration: 7s; }
+.p2 { width: 16px; height: 22px; left: 45%; animation-delay: 2s; animation-duration: 9s; }
+.p3 { width: 10px; height: 14px; left: 70%; animation-delay: 1s; animation-duration: 6s; }
+.p4 { width: 14px; height: 20px; left: 85%; animation-delay: 4s; animation-duration: 8s; }
+.p5 { width: 15px; height: 21px; left: 10%; animation-delay: 3s; animation-duration: 10s; }
+
+/* Animación matemática de caída y balanceo de pétalos */
+@keyframes caer {
+    0% {
+        top: -10%;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% {
+        top: 110%;
+        transform: translateX(100px) rotate(360deg);
+        opacity: 0;
+    }
 }
 
-/* CONTEINER CENTRAL: Eleva la tipografía por encima de todo el escenario */
-.contenedor-principal {
+/* ==========================================
+   TU TIPOGRAFÍA CENTRALIZADA
+   ========================================== */
+.contenedor-logo {
     position: relative;
     z-index: 3;
     width: 100%;
-    max-width: 800px;
+    max-width: 760px;
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* TIPOGRAFÍA: Adaptación e integración nativa del archivo del repositorio */
-.tipografia-gaby {
+.imagen-tipografia {
     width: 100%;
     height: auto;
     display: block;
     object-fit: contain;
-    
-    /* El truco indispensable: el fondo negro desaparece y el texto adopta los tonos de la luna */
+    /* Hace desaparecer el recuadro negro de tu JPG, integrándolo sobre la luna */
     mix-blend-mode: screen;
-    
-    /* Potencia el metalizado oro rosa contra el nuevo fondo */
-    filter: brightness(1.15) contrast(1.1);
+    filter: brightness(1.15) contrast(1.05);
 }
