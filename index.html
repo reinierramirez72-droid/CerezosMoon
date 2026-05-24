@@ -55,15 +55,15 @@
 
         <div class="contenedor-nombre">
             <h1 class="texto-caligrafico">Gaby</h1>
+            
+            <div class="reproductor-bajo-nombre">
+                <button id="btn-reproductor" class="btn-neon-musica">
+                    <i id="icono-reproductor" class="fas fa-play"></i>
+                </button>
+            </div>
         </div>
 
         <audio id="musica-fondo" src="cancion.mp3" loop></audio>
-
-        <div class="reproductor-contenedor">
-            <button id="btn-reproductor" class="btn-musica">
-                <i id="icono-reproductor" class="fas fa-play"></i>
-            </button>
-        </div>
 
     </div>
 
@@ -72,35 +72,29 @@
         const boton = document.getElementById('btn-reproductor');
         const icono = document.getElementById('icono-reproductor');
 
-        // Función unificada para alternar Play/Pause y cambiar iconos visuales
         function alternarMusica() {
             if (musica.paused) {
                 musica.play().then(() => {
                     icono.className = 'fas fa-pause';
-                }).catch(error => console.log("La reproducción automática requiere interacción previa"));
+                }).catch(error => console.log("La reproducción automática requiere interacción"));
             } else {
                 musica.pause();
                 icono.className = 'fas fa-play';
             }
         }
 
-        // 1. Escuchar el clic manual en el botón inferior
         boton.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita conflictos con el escuchador general de la pantalla
+            e.stopPropagation(); 
             alternarMusica();
         });
 
-        // 2. REPRODUCCIÓN AUTOMÁTICA CON CUALQUIER INTERACCIÓN
-        // Intenta arrancar de inmediato al cargar (funciona si ya hubo clics previos en el navegador)
         window.addEventListener('DOMContentLoaded', () => {
             musica.play().then(() => {
                 icono.className = 'fas fa-pause';
             }).catch(() => {
-                // Si el navegador lo bloquea, escucha cualquier interacción en la pantalla para activarlo
                 const activarConInteraccion = () => {
                     musica.play().then(() => {
                         icono.className = 'fas fa-pause';
-                        // Remueve los eventos una vez que la música ha comenzado con éxito
                         document.removeEventListener('click', activarConInteraccion);
                         document.removeEventListener('touchstart', activarConInteraccion);
                         document.removeEventListener('keydown', activarConInteraccion);
