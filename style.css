@@ -63,100 +63,97 @@ html, body {
 .p5 { width: 15px; height: 21px; left: 10%; animation-delay: 3s; animation-duration: 10s; }
 
 @keyframes caer {
-    0% {
-        top: -10%;
-        transform: translateX(0) rotate(0deg);
-        opacity: 0;
-    }
+    0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0; }
     10% { opacity: 0.8; }
     90% { opacity: 0.8; }
-    100% {
-        top: 110%;
-        transform: translateX(100px) rotate(360deg);
-        opacity: 0;
-    }
+    100% { top: 110%; transform: translateX(100px) rotate(360deg); opacity: 0; }
 }
 
 /* ==========================================
-   EFECTO: MARIPOSA BLANCA BRILLANTE
+   NUEVO EFECTO: MARIPOSA DE PERFIL
    ========================================== */
 .mariposa-contenedor {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     z-index: 3;
     pointer-events: none;
-    /* Aplica la animación de trayectoria aleatoria continua */
-    animation: vueloAleatorio 18s ease-in-out infinite;
+    animation: vueloAleatorio 20s ease-in-out infinite;
 }
 
-.mariposa {
+.mariposa-perfil {
     position: relative;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotate(-30deg); /* Inclinación inicial de vuelo */
 }
 
-/* El cuerpo central místico de la mariposa */
-.mariposa .cuerpo {
+/* El cuerpo inclinado de perfil */
+.cuerpo-perfil {
     position: absolute;
-    width: 3px;
-    height: 25px;
-    background: #ffffff;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #ffffff;
-}
-
-/* Estilo general para las alas con resplandor (Glow effect) */
-.mariposa .ala {
-    position: absolute;
-    width: 20px;
+    width: 4px;
     height: 22px;
-    background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.8));
-    border-radius: 50% 50% 30% 40%;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.4);
+    background: #eef2f7;
+    border-radius: 50%;
+    bottom: 10px;
+    left: 20px;
+    transform: rotate(35deg); /* Inclinación anatómica de perfil */
+    box-shadow: 0 0 8px #ffffff;
+}
+
+/* Diseño estilizado de las alas superiores blancas de perfil */
+.ala-frente, .ala-atras {
+    position: absolute;
+    background: linear-gradient(135deg, #ffffff 0%, #e6ecf5 100%);
+    /* Forma de gota alargada típica de las alas de la imagen */
+    border-radius: 15% 85% 45% 55%; 
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(240, 244, 250, 0.3);
+}
+
+/* Ala del primer plano (más grande y brillante) */
+.ala-frente {
+    width: 28px;
+    height: 32px;
     top: 5px;
+    left: 14px;
+    transform-origin: bottom left;
+    animation: aleteoPerfilFrente 0.18s ease-in-out infinite alternate;
+    z-index: 2;
 }
 
-/* Ala izquierda y su animación de aleteo en espejo */
-.ala-izquierda {
-    right: 50%;
-    transform-origin: right center;
-    animation: aleteoIzquierdo 0.15s linear infinite alternate;
+/* Ala del fondo (ligeramente oscurecida para dar profundidad 3D) */
+.ala-atras {
+    width: 25px;
+    height: 29px;
+    top: 3px;
+    left: 10px;
+    opacity: 0.7;
+    filter: brightness(0.85);
+    transform-origin: bottom left;
+    /* Un pequeño retraso (delay) hace que el aleteo se vea más natural */
+    animation: aleteoPerfilAtras 0.18s ease-in-out infinite alternate;
+    animation-delay: 0.03s;
+    z-index: 1;
 }
 
-/* Ala derecha y su animación de aleteo */
-.ala-derecha {
-    left: 50%;
-    transform-origin: left center;
-    border-radius: 50% 50% 40% 30%;
-    animation: aleteoDerecho 0.15s linear infinite alternate;
+/* ANIMACIONES DE ALETEO VERTICAL DE PERFIL */
+@keyframes aleteoPerfilFrente {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-55deg); } /* Sube y baja cubriendo el perfil */
 }
 
-/* ANIMACIONES DE ALETEO RAPIDÍSIMO (3D) */
-@keyframes aleteoIzquierdo {
-    0% { transform: rotateY(0deg); }
-    100% { transform: rotateY(70deg); }
+@keyframes aleteoPerfilAtras {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(-50deg); }
 }
 
-@keyframes aleteoDerecho {
-    0% { transform: rotateY(0deg); }
-    100% { transform: rotateY(-70deg); }
-}
-
-/* ANIMACIÓN DE TRAYECTORIA ALEATORIA (Vuelo por la pantalla) */
+/* TRAYECTORIA DE VUELO DIRECCIONAL (Avanza horizontalmente simulando el perfil) */
 @keyframes vueloAleatorio {
-    0% { top: 70%; left: 10%; transform: scale(0.8) rotate(20deg); }
-    15% { top: 30%; left: 30%; transform: scale(1) rotate(-40deg); }
-    30% { top: 15%; left: 65%; transform: scale(1.1) rotate(10deg); }
-    45% { top: 40%; left: 85%; transform: scale(0.9) rotate(50deg); }
-    60% { top: 75%; left: 55%; transform: scale(1) rotate(-20deg); }
-    75% { top: 50%; left: 20%; transform: scale(0.8) rotate(-60deg); }
-    90% { top: 20%; left: 40%; transform: scale(1.1) rotate(30deg); }
-    100% { top: 70%; left: 10%; transform: scale(0.8) rotate(20deg); }
+    0% { top: 75%; left: -5%; transform: scale(0.7); }
+    20% { top: 40%; left: 20%; transform: scale(0.9); }
+    40% { top: 20%; left: 50%; transform: scale(1.1); }
+    60% { top: 55%; left: 75%; transform: scale(0.9); }
+    80% { top: 30%; left: 95%; transform: scale(1); }
+    100% { top: 80%; left: 105%; transform: scale(0.7); } /* Cruza toda la pantalla de lado */
 }
 
 /* ==========================================
@@ -191,7 +188,6 @@ html, body {
     letter-spacing: 1px;
 }
 
-/* Ajustes dinámicos para pantallas pequeñas */
 @media (max-width: 768px) {
     .texto-caligrafico { font-size: 6rem; }
     .luna-derecha { width: 160px; height: 160px; right: 30px; top: 30px; }
