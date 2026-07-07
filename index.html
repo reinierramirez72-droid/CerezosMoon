@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espacio de Gaby</title>
+    <!-- Importamos Great Vibes para el nombre y Montserrat para el botón -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Iconos para el reproductor -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Vinculamos tu archivo CSS externo -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="xat-space-escenario">
-        
-        <div class="luna-derecha"></div>
 
+        <!-- LLUVIA DE PÉTALOS MEJORADA -->
         <div class="lluvia-petalos">
             <div class="petalo p1"></div>
             <div class="petalo p2"></div>
@@ -31,31 +33,16 @@
             <div class="petalo p12"></div>
         </div>
 
-        <div class="mariposa-contenedor m1">
-            <div class="mariposa">
-                <div class="cuerpo"></div>
-                <div class="ala ala-izquierda"></div>
-                <div class="ala ala-derecha"></div>
-            </div>
-        </div>
-        <div class="mariposa-contenedor m2">
-            <div class="mariposa">
-                <div class="cuerpo"></div>
-                <div class="ala ala-izquierda"></div>
-                <div class="ala ala-derecha"></div>
-            </div>
-        </div>
-        <div class="mariposa-contenedor m3">
-            <div class="mariposa">
-                <div class="cuerpo"></div>
-                <div class="ala ala-izquierda"></div>
-                <div class="ala ala-derecha"></div>
-            </div>
-        </div>
-
+        <!-- BLOQUE CENTRAL -->
         <div class="contenedor-nombre">
-            <h1 class="texto-caligrafico">Gaby</h1>
+            <!-- Nombre Gaby con la fuente de la imagen y brillo neón blanco -->
+            <h1 class="texto-caligrafico-glow">Gaby</h1>
             
+            <div class="xat-divider">
+                <div class="xat-heart"></div>
+            </div>
+            
+            <!-- Reproductor estilo cristal blanco translúcido -->
             <div class="reproductor-bajo-nombre">
                 <button id="btn-reproductor" class="reproductor-lindo">
                     <i id="icono-reproductor" class="fas fa-play"></i>
@@ -64,6 +51,7 @@
             </div>
         </div>
 
+        <!-- AUDIO NATIVO DESDE TU REPOSITORIO -->
         <audio id="musica-fondo" src="cancion.mp3" loop></audio>
 
     </div>
@@ -72,7 +60,6 @@
         const musica = document.getElementById('musica-fondo');
         const boton = document.getElementById('btn-reproductor');
         const icono = document.getElementById('icono-reproductor');
-        const texto = document.getElementById('texto-reproductor');
 
         function alternarMusica() {
             if (musica.paused) {
